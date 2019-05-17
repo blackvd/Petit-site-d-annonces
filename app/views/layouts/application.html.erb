@@ -6,10 +6,35 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+
+    <nav class="navbar is-info" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <%= link_to root_path, class: "navbar-item" do %>
+          <h1 class="title is-5">LES ANNONCES</h1>
+        <% end %>
+        <div role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarForAds">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </div>
+      </div>
+
+      <div id="navbarForAds" class="navbar-menu">
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <%= link_to "Nouvelle annonce", new_advertisement_path, class: "button is-light is-rounded" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </nav>
 
     <% if flash[:notice] %>
 
@@ -24,9 +49,13 @@
       <div class="notification is-danger global-notification">
         <p class="alert"><%= alert %></p>
       </div>
-  
+
     <% end %>
 
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
+
+
   </body>
 </html>

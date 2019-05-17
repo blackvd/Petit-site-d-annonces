@@ -1,37 +1,38 @@
-<%= form_with(model: advertisement, local: true) do |form| %>
-  <% if advertisement.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(advertisement.errors.count, "error") %> prohibited this advertisement from being saved:</h2>
+<section class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-4">
 
-      <ul>
-      <% advertisement.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <h2 class="title is-2">Nouvelle annonce</h2>
+
+        <%= simple_form_for @advertisement do |f| %>
+          <%= f.error_notification %>
+
+          <div class="field">
+            <div class="control">
+              <%= f.input :title, label: "Entrez le titre de l'annonce", input_html: {class: "input"}, wrapper: false, label_html: {class: "label"}, placeholder: "Le titre de l'annonce", autofocus: true %>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <%= f.input :content, label: "Entrez le contenu de l'annonce", input_html: {class: "textarea"}, wrapper: false, label_html: {class: "label"}, placeholder: "faites une description de l'annonce", autofocus: true %>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="control">
+              <%= f.input :price, label: "Entrez le titre de l'annonce", input_html: {class: "input"}, wrapper: false, label_html: {class: "label"}, autofocus: true %>
+            </div>
+          </div>
+
+          <%= f.button :submit, 'Soumettre l\'annonce',class: "button is-info" %>
+
+        <% end %>
+
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
   </div>
+</section>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
-  </div>
 
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price %>
-  </div>
-
-  <div class="field">
-    <%= form.label :state %>
-    <%= form.text_field :state %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>

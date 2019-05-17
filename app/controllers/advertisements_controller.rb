@@ -4,7 +4,7 @@ class AdvertisementsController < ApplicationController
   # GET /advertisements
   # GET /advertisements.json
   def index
-    @advertisements = Advertisement.all
+    @advertisements = Advertisement.where(state: "published").order('updated_at DESC')
   end
 
   # GET /advertisements/1
@@ -17,14 +17,11 @@ class AdvertisementsController < ApplicationController
     @advertisement = Advertisement.new
   end
 
-  # GET /advertisements/1/edit
-  def edit
-  end
-
   # POST /advertisements
   # POST /advertisements.json
   def create
     @advertisement = Advertisement.new(advertisement_params)
+    @advertisement.state = "waiting"
 
     respond_to do |format|
       if @advertisement.save
@@ -40,8 +37,9 @@ class AdvertisementsController < ApplicationController
   # PATCH/PUT /advertisements/1
   # PATCH/PUT /advertisements/1.json
   def update
+    @advertisement.state = "published"
     respond_to do |format|
-      if @advertisement.update(advertisement_params)
+      if @advertisement.save
         format.html { redirect_to @advertisement, notice: 'Advertisement was successfully updated.' }
         format.json { render :show, status: :ok, location: @advertisement }
       else
@@ -69,6 +67,6 @@ class AdvertisementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def advertisement_params
-      params.require(:advertisement).permit(:title, :content, :price, :state)
+      params.require(:advertisement).permit(:title, :content, :price)
     end
 end

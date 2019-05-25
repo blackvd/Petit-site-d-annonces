@@ -1,5 +1,6 @@
 class AdvertisementsController < ApplicationController
   before_action :set_advertisement, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :edit]
 
   # GET /advertisements
   # GET /advertisements.json
@@ -14,13 +15,13 @@ class AdvertisementsController < ApplicationController
 
   # GET /advertisements/new
   def new
-    @advertisement = Advertisement.new
+    @advertisement = current_user.advertisements.build
   end
 
   # POST /advertisements
   # POST /advertisements.json
   def create
-    @advertisement = Advertisement.new(advertisement_params)
+    @advertisement = current_user.advertisements.build(advertisement_params)
     @advertisement.state = "waiting"
 
     respond_to do |format|

@@ -25,17 +25,19 @@
             <%= @advertisement.content %>
           </p>
         </div>
-        <nav class="level is-mobile">
-          <div class="level-right">
-            <%= link_to advertisement_path(@advertisement), method: :patch,class: "level-item" do %>
-              <button class="button is-primary is-rounded">
-                <span class="icon">
-                  <i class="fa fa-check"></i>
-                </span> <span>Publier</span>
-              </button>
-            <% end %>
-          </div>
-        </nav>
+        <% if @advertisement.waiting? %>
+          <nav class="level is-mobile">
+            <div class="level-right">
+              <%= link_to advertisement_path(@advertisement), method: :patch,class: "level-item" do %>
+                <button class="button is-primary is-rounded">
+                  <span class="icon">
+                    <i class="fa fa-check"></i>
+                  </span> <span>Publier</span>
+                </button>
+              <% end %>
+            </div>
+          </nav>
+        <% end %>
       </div>
     </article>
   </div>

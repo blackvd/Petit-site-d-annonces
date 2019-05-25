@@ -7,7 +7,7 @@
   <div class="media-content">
     <div class="content">
       <p>
-        <strong>Aristide</strong> <small><i>posté à </i></small>
+        <strong><%= current_user.username %></strong> <small><i>posté à <%= comment.created_at %></i></small>
         <br>
         <%= comment.content %>
       </p>

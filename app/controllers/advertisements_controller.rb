@@ -5,7 +5,11 @@ class AdvertisementsController < ApplicationController
   # GET /advertisements
   # GET /advertisements.json
   def index
-    @advertisements = Advertisement.where(state: "published").order('updated_at DESC')
+    if current_user.try(:admin?)
+      @advertisements = Advertisement.page(params[:page]).per(10).order("updated_at DESC")
+    else
+      @advertisements = Advertisement.where(state: "published").page(params[:page]).per(10).order("updated_at DESC")
+    end
   end
 
   # GET /advertisements/1

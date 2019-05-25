@@ -9,7 +9,7 @@
         <div class="box">
 
           <%= render @advertisement.comments.order('created_at DESC') %>
-          <% if user_signed_in? %>
+          <% if user_signed_in? && !@advertisement.waiting? %>
             <%= render 'comments/form' %>
           <% end %>
 

@@ -13,7 +13,16 @@
             <br>
             <small><i>Postée à <%= advertisement.updated_at %></i></small>
             <br>
-            <%= advertisement.content %>
+            <p><%= advertisement.content %></p>
+            <% if user_signed_in? && @current_user.admin? %>
+              <button class="button is-black is-rounded">
+                <% if !advertisement.waiting? %>
+                  Annonce publiée
+                <% else %>
+                  Annonce en attente de publication
+                <% end %>
+              </button>
+            <% end %>
           </p>
         </div>
         <nav class="level is-mobile">

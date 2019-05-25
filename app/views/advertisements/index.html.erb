@@ -1,5 +1,7 @@
 <section class="section">
   <div class="container">
+    <%= paginate @advertisements, class: "paginate" %>
     <%=render 'feed' %>
+    <%= paginate @advertisements, class: "paginate" %>
   </div>
 </section>

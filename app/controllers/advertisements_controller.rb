@@ -64,6 +64,10 @@ class AdvertisementsController < ApplicationController
     end
   end
 
+  def user_advertisements
+    @advertisements = Advertisement.all.where(user_id: current_user).order("updated_at DESC")
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_advertisement
@@ -72,6 +76,6 @@ class AdvertisementsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def advertisement_params
-      params.require(:advertisement).permit(:title, :content, :price)
+      params.require(:advertisement).permit(:title, :content, :price, :category_id)
     end
 end

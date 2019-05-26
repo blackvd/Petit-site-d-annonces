@@ -7,7 +7,7 @@
   <div class="media-content">
     <div class="content">
       <p>
-        <strong><%= User.find(comment.user_id).name.upcase %></strong> <small><i>posté à <%= comment.created_at %></i></small>
+        <strong><%= User.find(comment.user_id).username %></strong> <small><i>posté à <%= comment.created_at %></i></small>
         <br>
         <%= comment.content %>
       </p>

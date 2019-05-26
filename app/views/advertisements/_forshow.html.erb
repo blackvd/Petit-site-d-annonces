@@ -1,9 +1,10 @@
 <div class="column is-narrow">
-  <div class="box" style="width: 200px">
-    <p class="title is-5">Propriétaire de l'annonce</p>
+  <div class="box" style="width: 250px">
+    <p class="title is-5">Infos</p>
     <p>
       Pseudo : <%= User.find(@advertisement.user_id).username %> <br>
       Email : <%= User.find(@advertisement.user_id).email %>
+      <span class="tag is-medium is-info"><%= @advertisement.category.title %></span>
     </p>
   </div>
 </div>
